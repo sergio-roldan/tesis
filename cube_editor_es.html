@@ -1,0 +1,95 @@
+<!-- index_es -->
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- HEAD -->
+<head>
+	<meta charset="UTF-8">
+	<title>DIEEC - Entorno de Desarrollo de Arduino</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- CodeMirror -->
+	<script src="external/codemirror/lib/codemirror.js"></script>
+	<script src="external/codemirror/mode/clike/clike.js"></script> 
+	<link rel="stylesheet" href="external/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="external/codemirror/theme/neat.css">
+	
+	
+</head>
+
+<!-- BODY -->
+<body>
+	<header id="main-header">
+		<div class="logos-header">
+			<a href="http://www.uned.es" target="_blank">
+				<img class="image" src="images/logo-uned.jpg" alt="logo-uned" width="100px" height="100px">
+			</a>
+		</div>
+		
+		<!--
+		<div class="logos-header">
+			<a href="http://www.ieec.uned.es" target="_blank">
+				<img class="image" src="images/logo-dieec.jpg" alt="logo-dieec" width="75px" height="75px">
+			</a>
+		</div>
+		-->
+		
+		<div class="title-header">
+			<h3>Departamento de Ingeniería Eléctrica, Electrónica y de Control</h3>
+		</div>
+		
+		<div class="lang-header">
+			<ul class="nav navbar-nav navbar-right">
+				<div class="btn-group">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+						<li><a href="#"><img src="http://relle.ufsc.br/img/es.png"/></a></li>
+						<span class="caret"></span>
+					</button>
+					
+					<ul id="flag" class="dropdown-menu" role="menu">
+						<li><a href="/tesis/index_en.html"><img src="http://relle.ufsc.br/img/en.png"/></a></li>
+						<li><a href="/tesis/index_es.html"><img src="http://relle.ufsc.br/img/es.png"/></a></li>
+					</ul>
+				</div>
+			</ul>
+		</div>	
+		
+ 	</header>
+	
+	<main>
+		<section class="">
+			<div class="container">
+			
+				<form id="compile" action="php/compile.php" method="post"">
+					<textarea id="text" name="text"></textarea>
+					<script>
+						var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
+							mode: "text/x-csrc",
+							theme: "neat", 
+							lineNumbers: true
+						});
+					</script>
+					<button type="submit" class="submit">Compile</button>
+				</form>
+				
+				<div id="test"></div> 
+			</div>
+		</section>
+	</main>
+	
+	<footer>
+		
+	</footer> 
+</body>
+
+</html> 

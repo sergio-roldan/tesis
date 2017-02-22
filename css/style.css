@@ -1,0 +1,57 @@
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+#main-header {
+	background: #03473A;
+	color: white;
+	height: 100px;
+}	
+
+.logos-header {
+	margin-left: 30px;
+	display: inline-block;
+}
+
+.logos-header:not(:first-child) {
+	margin-left: 100px;
+}
+
+.title-header {
+	position: relative;
+	margin-left: 200px;
+	display: inline-block;
+	height: auto;
+    vertical-align: middle;
+}
+
+.title-header h3 {
+	font-size: 25px;
+	line-height: 20px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.lang-header {
+	display: inline-block;
+	float: right;
+	margin-right: 60px;
+}
+
+.btn.btn-default.dropdown-toggle {
+	color: inherit; 
+	background-color: inherit;
+}
+
+.btn-default li {
+	float: left;
+}
+
+.caret {
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 8px solid #fff;
+	left: 90%;
+	top: 45%;
+	position: absolute;
+}
