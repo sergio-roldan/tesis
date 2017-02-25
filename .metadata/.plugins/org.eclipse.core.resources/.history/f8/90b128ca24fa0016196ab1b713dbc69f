@@ -1,0 +1,15 @@
+/*
+ * Decompiled with CFR 0_118.
+ */
+package InoToSource;
+
+public enum ReadState {
+    None,
+    Error,
+    Success;
+    
+
+    private ReadState(String string2, int n2) {
+    }
+}
+
