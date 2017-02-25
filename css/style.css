@@ -49,7 +49,7 @@ h6 {
 
 .page-title {
 	position: relative;
-	margin-left: 200px;
+	margin-left: 40px;
 	display: inline-block;
 	height: auto;
 	vertical-align: middle;
@@ -73,9 +73,8 @@ h6 {
 	background-color: inherit;
 	padding: 6px 20px 6px 6px;
 	border: none;
-	border-bottom: 2px solid;
 	border-radius: 0px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .btn-default li {
@@ -115,8 +114,8 @@ main {
     padding: 8px 18px;
     border: none;
 }
-.btn-primary:hover {
-	opacity: .85;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	opacity: .8;
 	background-color: #ff931e;
 }
 .btn-primary:not(:first-of-type) {

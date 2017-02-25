@@ -1,0 +1,10 @@
+public enum ReadState {
+    None,
+    Error,
+    Success;
+    
+
+    private ReadState(String string2, int n2) {
+    }
+}
+
