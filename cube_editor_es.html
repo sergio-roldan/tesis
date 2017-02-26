@@ -17,6 +17,7 @@
 	
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/editor.css">
 	
 	<!-- CodeMirror -->
 	<script src="external/codemirror/lib/codemirror.js"></script>
@@ -35,14 +36,6 @@
 				<img class="image" src="img/logo-uned.jpg" alt="logo-uned" width="100px" height="100px">
 			</a>
 		</div>
-		
-		<!--
-		<div class="logos-header">
-			<a href="http://www.ieec.uned.es" target="_blank">
-				<img class="image" src="img/logo-dieec.jpg" alt="logo-dieec" width="75px" height="75px">
-			</a>
-		</div>
-		-->
 		
 		<div class="page-title">
 			<span>Departamento de Ingeniería Eléctrica, Electrónica y de Control</span>
@@ -69,20 +62,50 @@
 	<main>
 		<section class="">
 			<div class="container">
-			
-				<form id="compile" action="php/compile.php" method="post"">
-					<textarea id="text" name="text"></textarea>
-					<script>
-						var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
-							mode: "text/x-csrc",
-							theme: "neat", 
-							lineNumbers: true
-						});
-					</script>
-					<button type="submit" class="submit">Compile</button>
-				</form>
+
+				<div class="editor">
+					<div class="editor-nav">
+						<div class="row">
+							<div class="editor-examples col-md-6">
+								<div class="btn-group editor-examples-dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+										<li><a href="#">Ejemplo 1</a></li>
+										<span class="caret"></span>
+									</button>
+
+									<ul id="editor-examples" class="dropdown-menu" role="menu">
+										<li><a href="index_es.html">Ejemplo 2</a></li>
+										<li><a href="index_en.html">Ejemplo 3</a></li>
+										<li><a href="index_en.html">Ejemplo 4</a></li>
+										<li><a href="index_en.html">Ejemplo 5</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="editor-cta col-md-6">
+								<div class="editor-cta-load">
+									<button class="upload"><img src="img/upload.svg" alt=""></button>
+									<button class="download"><img src="img/download.svg" alt=""></button>
+								</div>
+								<div class="editor-cta-compile">
+									<button class="verify"><img src="img/check.svg" alt=""></button>
+									<button type="submit" class="compile"><img src="img/compile.svg" alt=""></button>
+								</div>
+							</div>
+						</div>
+					</div>
 				
-				<div id="test"></div> 
+					<form id="compile" action="php/compile.php" method="post"">
+						<textarea id="text" name="text"></textarea>
+						<script>
+							var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
+								mode: "text/x-csrc",
+								theme: "neat", 
+								lineNumbers: true
+							});
+						</script>
+					</form>
+				</div>
+
 			</div>
 		</section>
 	</main>

@@ -1,0 +1,80 @@
+.editor-nav {
+	width: 100%;
+	background: #00979C;
+	padding: 6px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.CodeMirror {
+	border: 2px solid #f2f2f2;
+	height: calc(100vh - 250px) !important;
+	border-top: 0;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.editor-nav button {
+	background-color: rgba(255, 255, 255, .5);
+	display: inline-block;
+	border: none;
+	border-radius: 3px;
+	padding: 6px;
+}
+
+/*  Examples dropdown  */
+.editor-examples {
+
+}
+
+.editor-examples button {
+	color: white;
+	padding: 7px 32px 7px 14px;
+}
+
+.editor-examples button:focus, 
+.editor-examples button:hover, 
+.editor-examples button.active.focus, 
+.editor-examples button.active:focus, 
+.editor-examples button.active:hover, 
+.editor-examples button:active.focus, 
+.editor-examples button:active:focus, 
+.editor-examples button:active:hover, 
+.editor-examples .open>.dropdown-toggle.btn-default.focus, 
+.editor-examples .open>.dropdown-toggle.btn-default:focus, 
+.editor-examples .open>.dropdown-toggle.btn-default:hover {
+	color: white;
+	background-color: rgba(255, 255, 255, .65);
+	border: 0;
+}
+
+.editor-examples button a {
+	color: white;
+	font-size: 16px;
+}
+
+
+/*  Compilers CTAs  */
+.editor-cta {
+	text-align: right;
+}
+
+.editor-cta > div {
+	display: inline-block;
+	text-align: right;
+}
+
+.editor-cta button {
+	height: 35px;
+	width: 40px;
+	margin-left: 5px;
+}
+
+.editor-cta button img {
+	max-width: 25px;
+	max-height: 25px;
+}
+
+.editor-cta-load {
+	margin-right: 15px;
+}
