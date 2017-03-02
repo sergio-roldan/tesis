@@ -11,6 +11,8 @@
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -24,7 +26,9 @@
 	<script src="external/codemirror/mode/clike/clike.js"></script> 
 	<link rel="stylesheet" href="external/codemirror/lib/codemirror.css">
 	<link rel="stylesheet" href="external/codemirror/theme/neat.css">
-	
+
+	<!-- JavaScripts -->
+	<script src="js/button_actions.js"></script> 
 	
 </head>
 
@@ -68,27 +72,29 @@
 						<div class="row">
 							<div class="editor-examples col-md-6">
 								<div class="btn-group editor-examples-dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-										<li><a href="#">Ejemplo 1</a></li>
-										<span class="caret"></span>
-									</button>
-
-									<ul id="editor-examples" class="dropdown-menu" role="menu">
-										<li><a href="index_es.html">Ejemplo 2</a></li>
-										<li><a href="index_en.html">Ejemplo 3</a></li>
-										<li><a href="index_en.html">Ejemplo 4</a></li>
-										<li><a href="index_en.html">Ejemplo 5</a></li>
-									</ul>
+									<select onchange="loadExample(this.value)" class="editor-select">
+										<option value="new" selected="selected">Nuevo Sketch</option>
+										<option value="ex1">Blink</option>
+										<option value="ex2">Random LED</option>
+										<option value="ex3">Random LED2</option>
+										<option value="ex4">Fill Cube</option>
+										<option value="ex5">Moving Plane</option>
+										<option value="ex6">Flags</option>
+										<option value="ex7">Rainbow</option>
+										<option value="ex8">Morse</option>
+										<option value="ex9">Spiral</option>
+									</select>
 								</div>
 							</div>
 							<div class="editor-cta col-md-6">
 								<div class="editor-cta-load">
-									<button class="upload"><img src="img/upload.svg" alt=""></button>
-									<button class="download"><img src="img/download.svg" alt=""></button>
+									<button class="upload" onclick="document.getElementById('file-input').click()" ><span class="fa fa-upload"/></button>
+									<input id="file-input" type="file" accept=".ino" style="display: none;" />
+									<button class="download"><span class="fa fa-download"/></button>
 								</div>
 								<div class="editor-cta-compile">
-									<button class="verify"><img src="img/check.svg" alt=""></button>
-									<button type="submit" class="compile"><img src="img/compile.svg" alt=""></button>
+									<button class="verify"><span class="fa fa-check"/></button>
+									<button type="submit" class="compile"><span class="fa fa-arrow-right"/></button>
 								</div>
 							</div>
 						</div>
@@ -102,6 +108,12 @@
 								theme: "neat", 
 								lineNumbers: true
 							});
+
+							loadExample();
+
+							function getEditor() {
+								return editor;
+							}
 						</script>
 					</form>
 				</div>
