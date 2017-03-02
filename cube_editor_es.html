@@ -11,19 +11,24 @@
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/editor.css">
 	
 	<!-- CodeMirror -->
 	<script src="external/codemirror/lib/codemirror.js"></script>
 	<script src="external/codemirror/mode/clike/clike.js"></script> 
 	<link rel="stylesheet" href="external/codemirror/lib/codemirror.css">
 	<link rel="stylesheet" href="external/codemirror/theme/neat.css">
-	
+
+	<!-- JavaScripts -->
+	<script src="js/button_actions.js"></script> 
 	
 </head>
 
@@ -36,52 +41,83 @@
 			</a>
 		</div>
 		
-		<!--
-		<div class="logos-header">
-			<a href="http://www.ieec.uned.es" target="_blank">
-				<img class="image" src="img/logo-dieec.jpg" alt="logo-dieec" width="75px" height="75px">
-			</a>
-		</div>
-		-->
-		
 		<div class="page-title">
-			<span>Departamento de Ingeniería Eléctrica, Electrónica y de Control INGLES</span>
+			<span>Departamento de Ingeniería Eléctrica, Electrónica y de Control</span>
 		</div>
 		
 		<div class="lang-header">
 			<ul class="nav navbar-nav navbar-right">
 				<div class="btn-group">
 					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-						<li><a href="#"><img src="http://relle.ufsc.br/img/es.png"/></a></li>
+						<li><a href="#"><img class="flag-ico" src="img/Spain.ico"/></a></li>
 						<span class="caret"></span>
 					</button>
 					
 					<ul id="flag" class="dropdown-menu" role="menu">
-						<li><a href="/tesis/index_en.html"><img src="http://relle.ufsc.br/img/en.png"/></a></li>
-						<li><a href="/tesis/index_es.html"><img src="http://relle.ufsc.br/img/es.png"/></a></li>
+						<li><a href="index_es.html"><img class="flag-ico" src="img/Spain.ico"/></a></li>
+						<li><a href="index_en.html"><img class="flag-ico" src="img/UK.ico"/></a></li>
 					</ul>
 				</div>
 			</ul>
 		</div>	
+		
  	</header>
 	
 	<main>
 		<section class="">
 			<div class="container">
-			
-				<form id="compile" action="php/compile.php" method="post"">
-					<textarea id="text" name="text"></textarea>
-					<script>
-						var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
-							mode: "text/x-csrc",
-							theme: "neat", 
-							lineNumbers: true
-						});
-					</script>
-					<button type="submit" class="submit">Compile</button>
-				</form>
+
+				<div class="editor">
+					<div class="editor-nav">
+						<div class="row">
+							<div class="editor-examples col-md-6">
+								<div class="btn-group editor-examples-dropdown">
+									<select onchange="loadExample(this.value)" class="editor-select">
+										<option value="new" selected="selected">Nuevo Sketch</option>
+										<option value="ex1">Blink</option>
+										<option value="ex2">Random LED</option>
+										<option value="ex3">Random LED2</option>
+										<option value="ex4">Fill Cube</option>
+										<option value="ex5">Moving Plane</option>
+										<option value="ex6">Flags</option>
+										<option value="ex7">Rainbow</option>
+										<option value="ex8">Morse</option>
+										<option value="ex9">Spiral</option>
+									</select>
+								</div>
+							</div>
+							<div class="editor-cta col-md-6">
+								<div class="editor-cta-load">
+									<button class="upload" onclick="document.getElementById('file-input').click()" ><span class="fa fa-upload"/></button>
+									<input id="file-input" type="file" accept=".ino" style="display: none;" />
+									<button class="download"><span class="fa fa-download"/></button>
+								</div>
+								<div class="editor-cta-compile">
+									<button class="verify"><span class="fa fa-check"/></button>
+									<button type="submit" class="compile"><span class="fa fa-arrow-right"/></button>
+								</div>
+							</div>
+						</div>
+					</div>
 				
-				<div id="test"></div> 
+					<form id="compile" action="php/compile.php" method="post"">
+						<textarea id="text" name="text"></textarea>
+						<script>
+							var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
+								mode: "text/x-csrc",
+								theme: "neat", 
+								lineNumbers: true
+							});
+
+							loadExample();
+
+							function getEditor() {
+								return editor;
+							}
+						</script>
+					</form>
+				</div>
+
 			</div>
 		</section>
 	</main>

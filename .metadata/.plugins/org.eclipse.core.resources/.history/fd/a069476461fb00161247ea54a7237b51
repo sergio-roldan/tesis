@@ -1,0 +1,123 @@
+/*
+ * Decompiled with CFR 0_118.
+ */
+package directoryDump;
+
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Paths;
+
+public class ProgramOptions {
+    private String srcDir;
+    private String destDir;
+    private String errorMessage;
+    private boolean haveSourceDir;
+    private boolean haveDestDir;
+    private boolean recursive;
+    private String[] arguments;
+
+    public ProgramOptions(String[] args) {
+        this.arguments = args;
+        this.recursive = false;
+    }
+
+    public boolean parse() {
+        int len = this.arguments.length;
+        int i = 0;
+        while (i < len) {
+            String current = this.arguments[i];
+            if (current.indexOf("-s") != -1 || current.indexOf("--source") != -1) {
+                if (!this.checkSourceDirectoryOption(current, i, len)) {
+                    this.haveSourceDir = false;
+                } else {
+                    this.haveSourceDir = true;
+                    ++i;
+                }
+            } else if (current.indexOf("-d") != -1 || current.indexOf("--dir") != -1) {
+                if (!this.checkDestDirectoryOption(current, i, len)) {
+                    this.haveDestDir = false;
+                } else {
+                    this.haveDestDir = true;
+                    ++i;
+                }
+            } else if (current.indexOf("-r") != -1 || current.indexOf("--recursive") != -1) {
+                this.recursive = true;
+            }
+            ++i;
+        }
+        if (!this.haveSourceDir || !this.haveDestDir) {
+            this.errorMessage = String.valueOf(this.errorMessage) + "Deben pasarse los par\u00e1metros 'origen' (-s o --source) y 'destino' (-d o --dir). No todos los par\u00e1metros han sido pasados como argumento";
+        }
+        if (this.haveSourceDir && this.haveDestDir) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkSourceDirectoryOption(String argument, int argumentIndex, int numberOfArguments) {
+        boolean salida = true;
+        if (!this.thereAreMoreArguments(numberOfArguments, argumentIndex)) {
+            this.errorMessage = String.valueOf(this.errorMessage) + "El parametro {0} debe ser seguido por el nombre del directorio de origen\n" + argument;
+            salida = false;
+        }
+        this.srcDir = this.arguments[argumentIndex + 1].replaceAll("\r\n", "");
+        if (!Files.exists(Paths.get(this.srcDir, new String[0]), new LinkOption[0])) {
+            this.errorMessage = String.valueOf(this.errorMessage) + "El directorio {0} no existe\n" + this.srcDir;
+            salida = false;
+        }
+        return salida;
+    }
+
+    private boolean checkDestDirectoryOption(String argument, int argumentIndex, int numberOfArguments) {
+        if (!this.thereAreMoreArguments(numberOfArguments, argumentIndex)) {
+            this.errorMessage = String.valueOf(this.errorMessage) + "El parametro {0} debe ser seguido por el nombre del directorio de origen\n" + argument;
+            return false;
+        }
+        this.destDir = this.arguments[argumentIndex + 1].replaceAll("\r\n", "");
+        if (!Files.exists(Paths.get(this.srcDir, new String[0]), new LinkOption[0])) {
+            this.errorMessage = String.valueOf(this.errorMessage) + "El directorio {0} no existe\n" + this.srcDir;
+            return false;
+        }
+        return true;
+    }
+
+    private boolean thereAreMoreArguments(int number, int current) {
+        if (current + 1 < number) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
+
+    public void setErrorMessage(String error) {
+        this.errorMessage = error;
+    }
+
+    public String getSourceDirectory() {
+        return this.srcDir;
+    }
+
+    public void setSourceDirectory(String directory) {
+        this.srcDir = directory;
+    }
+
+    public String getTargetDirectory() {
+        return this.destDir;
+    }
+
+    public void setTargetDirectory(String directory) {
+        this.destDir = directory;
+    }
+
+    public boolean getRecursive() {
+        return this.recursive;
+    }
+
+    public void setRecursive(boolean data) {
+        this.recursive = data;
+    }
+}
+

@@ -49,7 +49,7 @@ h6 {
 
 .page-title {
 	position: relative;
-	margin-left: 200px;
+	margin-left: 40px;
 	display: inline-block;
 	height: auto;
 	vertical-align: middle;
@@ -68,18 +68,25 @@ h6 {
 	margin-right: 60px;
 }
 
-.btn.btn-default.dropdown-toggle {
+.lang-header .dropdown-toggle {
 	color: inherit;
 	background-color: inherit;
 	padding: 6px 20px 6px 6px;
 	border: none;
-	border-bottom: 2px solid;
 	border-radius: 0px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
-.btn-default li {
+.lang-header .btn-default li {
 	float: left;
+}
+
+#flag {
+	min-width: 10px;
+}
+
+.flag-ico {
+	width: 32px;
 }
 
 .caret {
@@ -91,6 +98,10 @@ h6 {
 	position: absolute;
 }
 
+li {
+	list-style: none;
+}
+
 /* Content */
 
 main {
@@ -99,6 +110,9 @@ main {
 
 .main-instructions {
 	margin-top: 50px;
+}
+.main-instructions:last-of-type {
+	margin-bottom: 50px;
 }
 
 .main-instructions > .row {
@@ -111,13 +125,13 @@ main {
 
 .btn-primary {
 	font-size: 17px;
-    background-color: #ff931e;
+    background-color: #e47d25;
     padding: 8px 18px;
     border: none;
 }
-.btn-primary:hover {
-	opacity: .85;
-	background-color: #ff931e;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	opacity: .8;
+	background-color: #e47d25;
 }
 .btn-primary:not(:first-of-type) {
 	margin-left: 10px;

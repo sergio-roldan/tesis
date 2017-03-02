@@ -1,0 +1,82 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
+import java.util.regex.Pattern;
+
+public class DirectoryCopy {
+    private String sourceDir;
+    private String destDir;
+    private String errorMessage;
+
+    public DirectoryCopy(String source, String dest) {
+        this.sourceDir = source;
+        this.destDir = dest;
+    }
+
+    public boolean execute(Boolean recursive) {
+        return this.copyDir(this.sourceDir, this.destDir, recursive);
+    }
+
+    private boolean copyDir(String source, String dest, boolean recursive) {
+        File[] subdirs;
+        File[] files;
+        Filtro filtroFile = new Filtro("file");
+        Filtro filtroDirectory = new Filtro("directory");
+        try {
+            subdirs = Paths.get(source, new String[0]).toFile().listFiles(filtroDirectory);
+            files = Paths.get(source, new String[0]).toFile().listFiles(filtroFile);
+        }
+        catch (Exception ex) {
+            this.errorMessage = "CopyDir ('{0}', '{1}') Error: {2}" + source + dest + ex.getMessage();
+            return false;
+        }
+        if (!Files.exists(Paths.get(dest, new String[0]), new LinkOption[0])) {
+            try {
+                Files.createDirectory(Paths.get(dest, new String[0]), new FileAttribute[0]);
+            }
+            catch (Exception ex) {
+                this.errorMessage = "CopyDir ('{0}', '{1}') Error: {2}" + source + dest + ex.getMessage();
+                return false;
+            }
+        }
+        int i = 0;
+        while (i < files.length) {
+            try {
+                Files.copy(files[i].toPath(), Paths.get(dest, files[i].getName()), StandardCopyOption.REPLACE_EXISTING);
+            }
+            catch (Exception ex) {
+                this.errorMessage = "CopyDir ('{0}', '{1}') Error: {2}" + source + dest + ex.getMessage();
+                return false;
+            }
+            ++i;
+        }
+        if (recursive) {
+            i = 0;
+            while (i < subdirs.length) {
+                try {
+                    String fullPath = subdirs[i].getPath().toString();
+                    String[] directories = fullPath.split(Pattern.quote(File.separator));
+                    String dirName = directories[directories.length - 1];
+                    Path destDir = Paths.get(dest, dirName);
+                    if (!this.copyDir(subdirs[i].getPath().toString(), destDir.toString(), true)) {
+                        return false;
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                ++i;
+            }
+        }
+        return true;
+    }
+
+    public String getErrorMessage() {
+        return this.errorMessage;
+    }
+}
+
