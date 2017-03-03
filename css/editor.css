@@ -5,6 +5,14 @@
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 }
+.camera {
+	width: 660px;
+	float: left;
+}
+.editor {
+	width: calc(100% - 660px);
+	float: left;
+}
 
 .CodeMirror {
 	border: 2px solid #f2f2f2;
@@ -30,6 +38,7 @@
 	color: white;
 	padding: 7px 32px 7px 14px;
 	font-weight: 700;
+	min-width: 150px;
 }
 .editor-examples option {
 	font-weight: 500;
@@ -37,6 +46,8 @@
 
 .editor-select {
 	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 .editor-examples-dropdown:after {
 	content: "\f078";
