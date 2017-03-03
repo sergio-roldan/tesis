@@ -1,3 +1,17 @@
+.main-container {
+	min-width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+.main-container:before {
+	display: table;
+	content: " ";
+}
+.main-container:after {
+	display: table;
+	content: " ";
+	clear: both;
+}
 .editor-nav {
 	width: 100%;
 	background: #00979C;
@@ -6,11 +20,12 @@
 	border-top-right-radius: 4px;
 }
 .camera {
-	width: 660px;
+	width: 650px;
 	float: left;
+	margin-left: 10px;
 }
 .editor {
-	width: calc(100% - 660px);
+	width: calc(100% - 680px);
 	float: left;
 }
 
@@ -22,6 +37,7 @@
 	border-bottom-right-radius: 4px;
 	font-size: 12px;
 	line-height: 16px;
+	min-height: 437px;
 }
 
 .editor-nav button,
@@ -106,4 +122,10 @@
 
 .editor-cta-load {
 	margin-right: 15px;
+}
+
+/* Iframe + camera */
+.camera iframe {
+	height: 100%;
+	min-height: 485px;
 }
