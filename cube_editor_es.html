@@ -71,7 +71,7 @@
 						<div class="row">
 							<div class="editor-examples col-md-6">
 								<div class="btn-group editor-examples-dropdown">
-									<select onchange="loadExample(this.value)" class="editor-select">
+									<select class="editor-select" id="editor-select" onchange="loadExample(this.value)">
 										<option value="new" selected="selected">Nuevo Sketch</option>
 										<option value="ex1">Blink</option>
 										<option value="ex2">Random LED</option>
@@ -89,7 +89,10 @@
 								<div class="editor-cta-load">
 									<button class="upload" onclick="document.getElementById('file-input').click()" ><span class="fa fa-upload"/></button>
 									<input id="file-input" type="file" accept=".ino" style="display: none;" />
-									<button class="download"><span class="fa fa-download"/></button>
+									<script>
+										document.getElementById('file-input').addEventListener('change', onLoadFile, false);
+									</script>
+									<button class="download" onclick="onSaveFile()"><span class="fa fa-download"/></button>
 								</div>
 								<div class="editor-cta-compile">
 									<button class="verify"><span class="fa fa-check"/></button>
@@ -102,13 +105,13 @@
 					<form id="compile" action="php/compile.php" method="post"">
 						<textarea id="text" name="text"></textarea>
 						<script>
-							var editor = CodeMirror.fromTextArea(document.getElementById("text"), {
-								mode: "text/x-csrc",
-								theme: "neat", 
+							var editor = CodeMirror.fromTextArea(document.getElementById('text'), {
+								mode: 'text/x-csrc',
+								theme: 'neat', 
 								lineNumbers: true
 							});
 
-							loadExample();
+							loadExample('new');
 
 							function getEditor() {
 								return editor;
