@@ -28,7 +28,8 @@
 	<link rel="stylesheet" href="external/codemirror/theme/neat.css">
 
 	<!-- JavaScripts -->
-	<script src="js/button_actions.js"></script> 
+	<script src="js/button_actions.js"></script>
+	<script src="js/button_tooltips.js"></script> 
 	
 </head>
 
@@ -87,16 +88,16 @@
 							</div>
 							<div class="editor-cta col-md-6">
 								<div class="editor-cta-load">
-									<button class="upload" onclick="document.getElementById('file-input').click()" ><span class="fa fa-upload"/></button>
+									<button class="upload" onclick="document.getElementById('file-input').click()" data-toggle="tooltip" data-placement="top" title="Cargar archivo"><span class="fa fa-upload"/></button>
 									<input id="file-input" type="file" accept=".ino" style="display: none;" />
 									<script>
 										document.getElementById('file-input').addEventListener('change', onLoadFile, false);
 									</script>
-									<button class="download" onclick="onSaveFile()"><span class="fa fa-download"/></button>
+									<button class="download" onclick="onSaveFile()" data-toggle="tooltip" data-placement="top" title="Descargar archivo"><span class="fa fa-download"/></button>
 								</div>
 								<div class="editor-cta-compile">
-									<button class="verify"><span class="fa fa-check"/></button>
-									<button type="submit" class="compile"><span class="fa fa-arrow-right"/></button>
+									<button class="compile" data-toggle="tooltip" data-placement="top" title="Compilar código"><span class="fa fa-check"/></button>
+									<button type="submit" class="execute" data-toggle="tooltip" data-placement="top" title="Ejecutar código"><span class="fa fa-arrow-right"/></button>
 								</div>
 							</div>
 						</div>

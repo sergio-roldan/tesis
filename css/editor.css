@@ -124,6 +124,12 @@
 	margin-right: 15px;
 }
 
+.tooltip-inner {
+    min-width: 100px;
+    max-width: 300px;
+    width: auto;
+}
+
 /* Iframe + camera */
 .camera iframe {
 	height: 100%;
