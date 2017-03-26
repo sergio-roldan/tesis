@@ -4363,3 +4363,13 @@ java.util.concurrent.TimeoutException: Timeout after waiting 5 seconds to acquir
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
 	at org.eclipse.egit.ui.internal.ConfigurationChecker$1.run(ConfigurationChecker.java:45)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2017-03-20 22:09:43.151 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_40
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-03-20 22:09:53.981
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
